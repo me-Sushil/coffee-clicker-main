@@ -7,7 +7,6 @@ function clickCoffee(data) {
   data.coffee += 1;
   updateCoffeeView(data.coffee);
   renderProducers(data);
-
 }
 
 function unlockProducers(producers, coffeeCount) {
@@ -71,25 +70,23 @@ function renderProducers(data) {
   });
 }
 
-
 function getProducerById(data, producerId) {
-  return data.producers.find((producer)=> producer.id === producerId);
+  return data.producers.find((producer) => producer.id === producerId);
 }
 
 function canAffordProducer(data, producerId) {
   let producer = getProducerById(data, producerId);
-  if(data.coffee >= producer.price){
+  if (data.coffee >= producer.price) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }
 
-
 function updateCPSView(cps) {
   let cpsIndicator = document.getElementById("cps");
-  if(cpsIndicator){
-  cpsIndicator.innerText = cps;
+  if (cpsIndicator) {
+    cpsIndicator.innerText = cps;
   }
 }
 
@@ -111,9 +108,20 @@ function attemptToBuyProducer(data, producerId) {
   return true;
 }
 
-
 function buyButtonClick(event, data) {
-  // your code here
+  if (event.target.tagName !== "BUTTON") return;
+  let id = event.target.id;
+  if (!id.startWIth("buy_")) return;
+  let producerId = id.slice(4);
+  let success = attemptToBuyProducer(data, producerId);
+
+  if (!success) {
+    alert("Not enough coffee!");
+    return;
+  }
+  updateCoffeeView(data.coffee);
+  updateCPSView(data.totalCPS);
+  renderProducers(data);
 }
 
 function tick(data) {

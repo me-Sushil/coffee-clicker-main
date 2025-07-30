@@ -111,7 +111,7 @@ function attemptToBuyProducer(data, producerId) {
 function buyButtonClick(event, data) {
   if (event.target.tagName !== "BUTTON") return;
   let id = event.target.id;
-  if (!id.startWIth("buy_")) return;
+  if (!id.startsWith("buy_")) return;
   let producerId = id.slice(4);
   let success = attemptToBuyProducer(data, producerId);
 

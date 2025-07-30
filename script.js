@@ -8,16 +8,18 @@ function clickCoffee(data) {
   updateCoffeeView(coffeeQty)
 }
 
-/**************
- *   SLICE 2
- **************/
-
 function unlockProducers(producers, coffeeCount) {
-  // your code here
+  for(let i = 0; i<producers.length; i++){
+    let object = producers[i];
+     let price = object.price;
+     if(coffeeCount >= (price/2)){
+      object.unlocked = true;
+     }
+  }
 }
 
 function getUnlockedProducers(data) {
-  // your code here
+  
 }
 
 function makeDisplayNameFromId(id) {

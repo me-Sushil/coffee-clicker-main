@@ -152,7 +152,7 @@ if (typeof process === "undefined") {
     buyButtonClick(event, data);
   });
 
-  setInterval(() => tick(data), 0.000000001);
+  setInterval(() => tick(data), 1000);
 } else if (process) {
   module.exports = {
     updateCoffeeView,

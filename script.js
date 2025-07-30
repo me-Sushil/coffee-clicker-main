@@ -7,6 +7,7 @@ function clickCoffee(data) {
   data.coffee += 1;
   updateCoffeeView(data.coffee);
   renderProducers(data);
+  saveGameData(data);
 }
 
 function unlockProducers(producers, coffeeCount) {
@@ -122,16 +123,26 @@ function buyButtonClick(event, data) {
   updateCoffeeView(data.coffee);
   updateCPSView(data.totalCPS);
   renderProducers(data);
+  saveGameData(data);
 }
 
 function tick(data) {
   data.coffee = data.coffee + data.totalCPS;
   updateCoffeeView(data.coffee);
-
+  saveGameData(data);
+}
+function saveGameData(data) {
+  localStorage.setItem("gameData", JSON.stringify(data));
 }
 
 if (typeof process === "undefined") {
-  const data = window.data;
+  const savedData = localStorage.getItem("gameData");
+  const data = savedData ? JSON.parse(savedData) : window.data;
+
+  updateCoffeeView(data.coffee);
+  updateCPSView(data.totalCPS);
+  renderProducers(data);
+
 
   const bigCoffee = document.getElementById("big_coffee");
   bigCoffee.addEventListener("click", () => clickCoffee(data));
@@ -141,9 +152,8 @@ if (typeof process === "undefined") {
     buyButtonClick(event, data);
   });
 
-  setInterval(() => tick(data), 1000);
-}
-else if (process) {
+  setInterval(() => tick(data), 0.000000001);
+} else if (process) {
   module.exports = {
     updateCoffeeView,
     clickCoffee,

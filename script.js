@@ -1,15 +1,11 @@
-/* eslint-disable no-alert */
-
-/**************
- *   SLICE 1
- **************/
-
 function updateCoffeeView(coffeeQty) {
-  // your code here
+  let cofeeCounter = document.getElementById("coffee_counter");
+  cofeeCounter.innerText = coffeeQty;
 }
 
 function clickCoffee(data) {
-  // your code here
+  let coffeeQty = data.coffee += 1;
+  updateCoffeeView(coffeeQty)
 }
 
 /**************

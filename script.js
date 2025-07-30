@@ -31,7 +31,6 @@ function makeDisplayNameFromId(id) {
     .join(" ");
 }
 
-// You shouldn't need to edit this function-- its tests should pass once you've written makeDisplayNameFromId
 function makeProducerDiv(producer) {
   const containerDiv = document.createElement("div");
   containerDiv.className = "producer";
@@ -95,12 +94,23 @@ function updateCPSView(cps) {
 }
 
 function updatePrice(oldPrice) {
-  // your code here
+  return Math.floor(oldPrice * 1.25);
 }
 
 function attemptToBuyProducer(data, producerId) {
-  // your code here
+  const producer = getProducerById(data, producerId);
+  if (!canAffordProducer(data, producerId)) {
+    return false;
+  }
+  data.coffee -= producer.price;
+  producer.qty += 1;
+  producer.price = updatePrice(producer.price);
+  data.totalCPS += producer.cps;
+  updateCPSView(data.totalCPS);
+
+  return true;
 }
+
 
 function buyButtonClick(event, data) {
   // your code here

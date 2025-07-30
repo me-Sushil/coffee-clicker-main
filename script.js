@@ -1,11 +1,11 @@
 function updateCoffeeView(coffeeQty) {
-  let cofeeCounter = document.getElementById("coffee_counter");
-  cofeeCounter.innerText = coffeeQty;
+  let coffeeCounter = document.getElementById("coffee_counter");
+  coffeeCounter.innerText = coffeeQty;
 }
 
 function clickCoffee(data) {
-  let coffeeQty = (data.coffee += 1);
-  updateCoffeeView(coffeeQty);
+  data.coffee += 1;
+  updateCoffeeView(data.coffee);
 }
 
 function unlockProducers(producers, coffeeCount) {
@@ -52,7 +52,7 @@ function makeProducerDiv(producer) {
 
 function deleteAllChildNodes(parent) {
   while (parent.firstChild) {
-    parent.removeChild(parent.firstChild); // need to write removeChild
+    parent.removeChild(parent.firstChild); // Remove each child node
   }
 }
 

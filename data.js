@@ -85,6 +85,6 @@ window.data = {
       unlocked: false,
       cps: 2000,
       qty: 0
-    }
+    },
   ]
 };

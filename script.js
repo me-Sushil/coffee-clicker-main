@@ -72,12 +72,9 @@ function renderProducers(data) {
   });
 }
 
-/**************
- *   SLICE 3
- **************/
 
 function getProducerById(data, producerId) {
-  // your code here
+  return data.producers.find((producer)=> producer.id === producerId);
 }
 
 function canAffordProducer(data, producerId) {
